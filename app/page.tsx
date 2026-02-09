@@ -38,7 +38,7 @@ export default function Home() {
               GIẢI PHÁP NGỦ NGON TỰ NHIÊN
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-              GINCI10 + PureVital Omega-3
+              Liệu trình phục hồi giấc ngủ tự nhiên
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed font-medium">
               Phục hồi tế bào thần kinh từ gốc rễ
@@ -72,7 +72,7 @@ export default function Home() {
           {/* Benefit 1 */}
           <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
             <div className="w-full md:w-1/2 order-2 md:order-1">
-              <span className="text-6xl md:text-7xl font-black bg-gradient-to-r from-purple-500/30 to-transparent bg-clip-text text-transparent">
+              <span className="text-6xl md:text-7xl font-black text-purple-400">
                 01
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
@@ -96,8 +96,8 @@ export default function Home() {
                 <Image
                   src="/hon-dau-ca.jpg"
                   alt="Ngủ ngon tự nhiên"
-                  width={600}
-                  height={400}
+                  width={1024}
+                  height={1024}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
@@ -112,14 +112,14 @@ export default function Home() {
                 <Image
                   src="/co-che.jpg"
                   alt="Dập tắt lo âu"
-                  width={600}
-                  height={400}
+                  width={1080}
+                  height={1080}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <span className="text-6xl md:text-7xl font-black bg-gradient-to-r from-blue-500/30 to-transparent bg-clip-text text-transparent">
+              <span className="text-6xl md:text-7xl font-black text-blue-400">
                 02
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
@@ -141,7 +141,7 @@ export default function Home() {
           {/* Benefit 3 */}
           <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
             <div className="w-full md:w-1/2 order-2 md:order-1">
-              <span className="text-6xl md:text-7xl font-black bg-gradient-to-r from-emerald-500/30 to-transparent bg-clip-text text-transparent">
+              <span className="text-6xl md:text-7xl font-black text-emerald-400">
                 03
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
@@ -164,8 +164,8 @@ export default function Home() {
                 <Image
                   src="/suc-manh.jpg"
                   alt="Phục hồi tế bào não"
-                  width={600}
-                  height={400}
+                  width={1024}
+                  height={1024}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
@@ -180,14 +180,14 @@ export default function Home() {
                 <Image
                   src="/uu-diem.jpg"
                   alt="Tỉnh táo sau khi ngủ"
-                  width={600}
-                  height={400}
+                  width={2048}
+                  height={1537}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <span className="text-6xl md:text-7xl font-black bg-gradient-to-r from-amber-500/30 to-transparent bg-clip-text text-transparent">
+              <span className="text-6xl md:text-7xl font-black text-amber-400">
                 04
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
@@ -292,8 +292,8 @@ export default function Home() {
                 <Image
                   src="/thanh-phan.jpg"
                   alt="Cơ chế tác động"
-                  width={600}
-                  height={400}
+                  width={2048}
+                  height={1537}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
@@ -464,8 +464,8 @@ export default function Home() {
                 <Image
                   src="/quyen-luc.jpg"
                   alt="Đối tượng sử dụng"
-                  width={600}
-                  height={400}
+                  width={1080}
+                  height={1080}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
@@ -589,15 +589,15 @@ export default function Home() {
                   <ul className="space-y-2 text-base md:text-lg text-gray-300">
                     <li className="flex items-center gap-2">
                       <Check className="w-5 h-5 text-purple-400" />
-                      Uống 1 viên/ngày trước khi ngủ
+                      Uống 1-2 viên/ngày sau bữa ăn
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-5 h-5 text-purple-400" />
-                      Hoặc theo chỉ dẫn của bác sĩ
+                      Uống với nước ấm để hấp thu tốt hơn
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-5 h-5 text-purple-400" />
-                      Kết hợp với lối sống lành mạnh
+                      Duy trì đều đặn để thấy hiệu quả
                     </li>
                   </ul>
                 </div>
@@ -662,15 +662,55 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-zinc-950 text-gray-400 py-8 border-t border-white/10">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-base md:text-lg mb-2">
-            © 2026 PharmaCity. All rights reserved.
-          </p>
-          <p className="text-sm md:text-base text-gray-500">
-            Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc
-            chữa bệnh.
-          </p>
+      <footer className="bg-zinc-950 text-gray-400 py-12 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
+            {/* Thông tin liên hệ */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">THÔNG TIN LIÊN HỆ</h3>
+              <ul className="space-y-3 text-base md:text-lg">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  <span>Address: 198 Thái Thịnh, Đống Đa, Hà Nội</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <span>Hotline: 0389.933.933</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Chính sách khách hàng */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">CHÍNH SÁCH KHÁCH HÀNG</h3>
+              <ul className="space-y-3 text-base md:text-lg">
+                <li className="flex items-center gap-3">
+                  <Truck className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <span>Chính sách vận chuyển</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <RotateCcw className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <span>Chính sách bảo hành</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Lock className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                  <span>Chính sách bảo mật</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center border-t border-white/10 pt-6">
+            <p className="text-base md:text-lg mb-2">
+              © 2026 DSN5Gmatngu. All rights reserved.
+            </p>
+            <p className="text-sm md:text-base text-gray-500">
+              Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc
+              chữa bệnh.
+            </p>
+          </div>
         </div>
       </footer>
     </main>
