@@ -22,6 +22,8 @@ import {
   Lightbulb,
 } from "lucide-react";
 import ShopButton from "@/components/shopButton";
+import FeedbackSlider from "@/components/FeedbackSlider";
+import CertificateSlider from "@/components/CertificateSlider";
 
 export default function Home() {
   return (
@@ -125,9 +127,9 @@ export default function Home() {
                 DẬP TẮT LO ÂU NGAY LẬP TỨC
               </h3>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-4">
-                <strong className="text-white">GABA (22.1mg)</strong> hoạt động
-                như công tắc thông minh, gửi tín hiệu "Ngừng bắn" tới các nơ-ron
-                đang bị kích thích quá độ.
+                <strong className="text-white">GABA</strong> hoạt động như công
+                tắc thông minh, gửi tín hiệu "Ngừng bắn" tới các nơ-ron đang bị
+                kích thích quá độ.
               </p>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                 Giúp dập tắt cơn bồn chồn, lo âu, suy nghĩ miên man ngay lập tức
@@ -194,8 +196,8 @@ export default function Home() {
               </h3>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-4">
                 <strong className="text-white">Astaxanthin</strong> - chất chống
-                oxy hóa mạnh hơn Vitamin E 6000 lần, bảo vệ tế bào thần kinh,
-                phục hồi năng lượng.
+                oxy hóa mạnh hơn Vitamin E, bảo vệ tế bào thần kinh, phục hồi
+                năng lượng.
               </p>
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                 Không gây mệt mỏi, choáng váng, lờ đờ như các loại thuốc ức chế
@@ -397,7 +399,8 @@ export default function Home() {
                   <div>
                     <strong className="text-white">Astaxanthin:</strong>{" "}
                     <span className="text-gray-300">
-                      Chống oxy hóa mạnh gấp 6000 lần Vitamin E
+                      Chống oxy hóa mạnh hơn Vitamin E, bảo vệ tế bào thần kinh,
+                      phục hồi năng lượng.
                     </span>
                   </div>
                 </li>
@@ -631,7 +634,8 @@ export default function Home() {
             </div>
             <p className="text-base md:text-lg text-gray-300">
               Sử dụng liên tục ít nhất 2-3 tháng để đạt hiệu quả tốt nhất. Sản
-              phẩm được nghiên cứu bởi Tiến sĩ, Giáo sư Bệnh viện Y Dược Hà Nội.
+              phẩm được nghiên cứu bởi Tiến sĩ, Giáo sư Bệnh viện Đại Học Y Dược
+              Hà Nội.
             </p>
           </div>
         </div>
@@ -708,6 +712,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Feedback Slider */}
+      <FeedbackSlider />
+
+      {/* Certificate & Store Slider */}
+      <CertificateSlider />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-black via-purple-950/20 to-black relative overflow-hidden">
