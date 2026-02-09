@@ -1,191 +1,496 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gray-50">
       {/* Hero Section - Mobile First */}
-      <section className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Your Trusted Healthcare Partner
+      <section className="relative bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/hon-dau-ca.jpg')] bg-cover bg-center opacity-20"></div>
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+              🏆 Bộ đôi bảo vệ sức khỏe toàn diện
+            </span>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+              GINCI10 + PureVital Omega-3
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-blue-100">
-              Quality pharmaceutical products and healthcare services delivered with convenience and care.
+            <p className="text-base md:text-lg mb-6 text-emerald-50 leading-relaxed">
+              Thông mạch – Dưỡng não – Bảo vệ tim mạch
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all transform hover:scale-105 shadow-lg">
-                Shop Now
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button className="bg-white text-emerald-700 px-6 py-3 rounded-full font-semibold hover:bg-emerald-50 transition-all shadow-lg text-sm md:text-base">
+                Mua ngay
               </button>
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all">
-                Learn More
+              <button className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition-all text-sm md:text-base">
+                Tìm hiểu thêm
               </button>
             </div>
           </div>
         </div>
-        {/* Wave decoration */}
+        {/* Wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-auto" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0L60 10C120 20 240 40 360 46.7C480 53 600 47 720 43.3C840 40 960 40 1080 46.7C1200 53 1320 67 1380 73.3L1440 80V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z" fill="white"/>
+          <svg viewBox="0 0 1440 80" fill="none" className="w-full">
+            <path
+              d="M0 40L80 35C160 30 320 20 480 25C640 30 800 50 960 55C1120 60 1280 50 1360 45L1440 40V80H0V40Z"
+              fill="#f9fafb"
+            />
           </svg>
         </div>
       </section>
 
-      {/* Features Section - Mobile First Grid */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* Thành phần chính */}
+      <section className="py-10 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">
-            Why Choose PharmaCity?
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-900">
+            Thành phần chính
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            We combine expertise, convenience, and care to provide you with the best healthcare experience.
+          <p className="text-center text-gray-600 mb-8 text-sm md:text-base">
+            Công thức kết hợp tối ưu từ thiên nhiên
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Feature 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+            <Image
+              src="/thanh-phan.jpg"
+              alt="Thành phần sản phẩm"
+              width={2048}
+              height={1537}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* PureVital Omega-3 */}
+            <div className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl">🐟</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  PureVital Omega-3
+                </h3>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Quality Assured</h3>
-              <p className="text-gray-700">
-                All products are sourced from licensed manufacturers and verified for authenticity.
-              </p>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-600 mt-0.5">●</span>
+                  <span>
+                    <strong>Dầu cá 800mg:</strong> Omega-3 ≥ 280mg (DHA ≥96mg,
+                    EPA ≥144mg)
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-600 mt-0.5">●</span>
+                  <span>
+                    <strong>Dầu nhuyễn thể 100mg:</strong> Omega-3 ≥22mg (DHA
+                    ≥5.5mg, EPA ≥12mg)
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-cyan-600 mt-0.5">●</span>
+                  <span>Viên nang mềm, độ rã &lt;30 phút, dễ hấp thu</span>
+                </li>
+              </ul>
             </div>
 
-            {/* Feature 2 */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-green-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            {/* GINCI10 */}
+            <div className="bg-white rounded-xl p-5 shadow-md border border-gray-100">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-xl">🧠</span>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">GINCI10</h3>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Fast Delivery</h3>
-              <p className="text-gray-700">
-                Same-day delivery available for urgent medications. Track your order in real-time.
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-0.5">●</span>
+                  <span>
+                    <strong>GABA 22.1mg:</strong> Giảm lo âu, ổn định thần kinh
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-0.5">●</span>
+                  <span>
+                    <strong>Citicoline:</strong> Bảo vệ tế bào não, chống oxy
+                    hóa
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-0.5">●</span>
+                  <span>
+                    <strong>Ginkgo Biloba:</strong> Tăng tuần hoàn não, cải
+                    thiện trí nhớ
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 mt-0.5">●</span>
+                  <span>
+                    <strong>Magnesi, CoQ10:</strong> Làm dịu thần kinh, hỗ trợ
+                    giấc ngủ
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cơ chế hoạt động */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-900">
+            Cơ chế hoạt động
+          </h2>
+          <p className="text-center text-gray-600 mb-8 text-sm md:text-base">
+            Bộ đôi kết hợp hoàn hảo cho sức khỏe toàn diện
+          </p>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+            <Image
+              src="/co-che.jpg"
+              alt="Cơ chế hoạt động"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-xl border border-blue-100">
+              <div className="text-2xl mb-2">🫀</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Bảo vệ tim mạch
+              </h4>
+              <p className="text-xs text-gray-600">
+                EPA & DHA giảm cholesterol xấu, triglyceride, ổn định huyết áp
               </p>
             </div>
-
-            {/* Feature 3 */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Expert Advice</h3>
-              <p className="text-gray-700">
-                Consult with licensed pharmacists 24/7 for personalized healthcare guidance.
+            <div className="bg-gradient-to-br from-emerald-50 to-green-50 p-4 rounded-xl border border-emerald-100">
+              <div className="text-2xl mb-2">🧠</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Nuôi dưỡng não bộ
+              </h4>
+              <p className="text-xs text-gray-600">
+                DHA cấu tạo màng tế bào thần kinh, tăng trí nhớ và tập trung
               </p>
             </div>
-
-            {/* Feature 4 */}
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-orange-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Best Prices</h3>
-              <p className="text-gray-700">
-                Competitive pricing with regular discounts and loyalty rewards for our customers.
+            <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-4 rounded-xl border border-purple-100">
+              <div className="text-2xl mb-2">🔄</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Tăng tuần hoàn não
+              </h4>
+              <p className="text-xs text-gray-600">
+                Ginkgo Biloba tăng lưu lượng máu não, giảm chóng mặt đau đầu
               </p>
             </div>
-
-            {/* Feature 5 */}
-            <div className="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">Secure & Private</h3>
-              <p className="text-gray-700">
-                Your health data is protected with end-to-end encryption and strict privacy policies.
+            <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-4 rounded-xl border border-orange-100">
+              <div className="text-2xl mb-2">👁️</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Bảo vệ thị lực
+              </h4>
+              <p className="text-xs text-gray-600">
+                DHA hỗ trợ cấu trúc võng mạc, giảm mỏi mắt, thoái hóa
               </p>
             </div>
-
-            {/* Feature 6 */}
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-              <div className="w-14 h-14 bg-teal-600 rounded-full flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900">24/7 Support</h3>
-              <p className="text-gray-700">
-                Round-the-clock customer support to assist you with any queries or concerns.
+            <div className="bg-gradient-to-br from-red-50 to-rose-50 p-4 rounded-xl border border-red-100">
+              <div className="text-2xl mb-2">💪</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Giảm viêm & hỗ trợ khớp
+              </h4>
+              <p className="text-xs text-gray-600">
+                Omega-3 chống viêm, giảm đau nhức khớp hiệu quả
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-4 rounded-xl border border-indigo-100">
+              <div className="text-2xl mb-2">😴</div>
+              <h4 className="font-bold text-gray-900 mb-1 text-sm">
+                Cải thiện giấc ngủ
+              </h4>
+              <p className="text-xs text-gray-600">
+                GABA, Magnesi giúp thư giãn, giảm căng thẳng, ngủ sâu hơn
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Mobile Optimized */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* Sức mạnh kết hợp */}
+      <section className="py-10 md:py-16 bg-gradient-to-br from-emerald-600 to-teal-700 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
+            Sức mạnh kết hợp
+          </h2>
+          <p className="text-center text-emerald-100 mb-8 text-sm md:text-base">
+            1 + 1 = 3: Hiệu quả vượt trội khi dùng cùng nhau
+          </p>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-xl mb-8">
+            <Image
+              src="/suc-manh.jpg"
+              alt="Sức mạnh kết hợp"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+              <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                <span className="text-xl">🔬</span> GINCI10 - Thông mạch & Kích
+                hoạt
+              </h3>
+              <ul className="space-y-2 text-sm text-emerald-50">
+                <li>• GABA giúp dập tắt cảm giác lo âu ngay lập tức</li>
+                <li>• Citicoline bảo vệ tế bào não khỏi stress oxy hóa</li>
+                <li>• Bảo tồn năng lượng tế bào thần kinh (ATP)</li>
+                <li>• Ginkgo Biloba tăng lưu thông máu lên não</li>
+              </ul>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+              <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                <span className="text-xl">💧</span> PureVital - Nuôi dưỡng & Bảo
+                vệ
+              </h3>
+              <ul className="space-y-2 text-sm text-emerald-50">
+                <li>• EPA/DHA nuôi dưỡng màng tế bào thần kinh</li>
+                <li>• Omega-3 giảm mỡ máu, chống xơ vữa động mạch</li>
+                <li>• Điều hòa hormone căng thẳng cortisol</li>
+                <li>• Dầu nhuyễn thể giúp hấp thu nhanh hơn</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-6 bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 text-center">
+            <p className="text-base md:text-lg font-medium">
+              ✅ Kết hợp: Máu lưu thông tốt + Tế bào thần kinh được nuôi dưỡng
+              đầy đủ
+              <br />={" "}
+              <strong>
+                Não hoạt động minh mẫn, tim khỏe mạnh, tinh thần thoải mái
+              </strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ưu điểm vượt trội */}
+      <section className="py-10 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-900">
+            Ưu điểm vượt trội
+          </h2>
+          <p className="text-center text-gray-600 mb-8 text-sm md:text-base">
+            Lý do hàng ngàn khách hàng tin dùng
+          </p>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+            <Image
+              src="/uu-diem.jpg"
+              alt="Ưu điểm sản phẩm"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <div className="bg-white rounded-xl p-4 text-center shadow-md border border-gray-100">
+              <div className="text-3xl mb-2">✓</div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">
+                Thành phần tự nhiên
+              </h4>
+              <p className="text-xs text-gray-600">
+                An toàn, không tác dụng phụ
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-4 text-center shadow-md border border-gray-100">
+              <div className="text-3xl mb-2">⚡</div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">
+                Hấp thu nhanh
+              </h4>
+              <p className="text-xs text-gray-600">
+                Viên nang mềm, độ rã &lt;30 phút
+              </p>
+            </div>
+            <div className="bg-white rounded-xl p-4 text-center shadow-md border border-gray-100">
+              <div className="text-3xl mb-2">🎯</div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">
+                Hiệu quả cao
+              </h4>
+              <p className="text-xs text-gray-600">Hàm lượng EPA/DHA tối ưu</p>
+            </div>
+            <div className="bg-white rounded-xl p-4 text-center shadow-md border border-gray-100">
+              <div className="text-3xl mb-2">🛡️</div>
+              <h4 className="font-bold text-gray-900 text-sm mb-1">
+                Bảo vệ toàn diện
+              </h4>
+              <p className="text-xs text-gray-600">Tim - Não - Mắt - Khớp</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Đối tượng sử dụng */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 text-gray-900">
+            Đối tượng sử dụng
+          </h2>
+          <p className="text-center text-gray-600 mb-8 text-sm md:text-base">
+            Phù hợp cho nhiều nhóm người có nhu cầu khác nhau
+          </p>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+            <Image
+              src="/quyen-luc.jpg"
+              alt="Đối tượng sử dụng"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+              <span className="text-2xl">👨‍💼</span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm">
+                  Người làm việc trí óc
+                </h4>
+                <p className="text-xs text-gray-600">
+                  Cần tập trung cao, hay căng thẳng, mất ngủ
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+              <span className="text-2xl">👴</span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm">
+                  Người trung niên & cao tuổi
+                </h4>
+                <p className="text-xs text-gray-600">
+                  Phòng ngừa suy giảm trí nhớ, tim mạch
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+              <span className="text-2xl">😰</span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm">
+                  Người hay lo âu, mất ngủ
+                </h4>
+                <p className="text-xs text-gray-600">
+                  Cần ổn định thần kinh, cải thiện giấc ngủ
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+              <span className="text-2xl">🏃</span>
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm">
+                  Người có lối sống bận rộn
+                </h4>
+                <p className="text-xs text-gray-600">
+                  Ít ngủ, dễ bị ốm, cần tăng đề kháng
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hướng dẫn sử dụng */}
+      <section className="py-10 md:py-16 bg-gradient-to-br from-cyan-600 to-blue-700 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">
+            Hướng dẫn sử dụng
+          </h2>
+          <p className="text-center text-cyan-100 mb-8 text-sm md:text-base">
+            Đơn giản, dễ thực hiện mỗi ngày
+          </p>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-xl mb-8">
+            <Image
+              src="/cach-dung.jpg"
+              alt="Cách sử dụng"
+              width={800}
+              height={450}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold">
+                  1
+                </div>
+                <h3 className="font-bold">PureVital Omega-3</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-cyan-50">
+                <li>• Uống 1-2 viên/ngày sau bữa ăn</li>
+                <li>• Uống với nước ấm để hấp thu tốt hơn</li>
+                <li>• Duy trì đều đặn để thấy hiệu quả</li>
+              </ul>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center font-bold">
+                  2
+                </div>
+                <h3 className="font-bold">GINCI10</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-cyan-50">
+                <li>• Uống 1 viên/ngày trước khi ngủ</li>
+                <li>• Hoặc theo chỉ dẫn của bác sĩ</li>
+                <li>• Kết hợp với lối sống lành mạnh</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p className="text-cyan-100 text-sm mb-4">
+              💡 Lưu ý: Sử dụng liên tục ít nhất 2-3 tháng để đạt hiệu quả tốt
+              nhất
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 md:py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Experience Better Healthcare?
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Bắt đầu hành trình sức khỏe ngay hôm nay!
           </h2>
-          <p className="text-lg md:text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who trust PharmaCity for their healthcare needs.
+          <p className="text-gray-400 mb-8 max-w-xl mx-auto text-sm md:text-base">
+            Bộ đôi GINCI10 + PureVital Omega-3 - Giải pháp toàn diện cho não bộ
+            và tim mạch của bạn
           </p>
-          <button className="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-all transform hover:scale-105 shadow-xl">
-            Get Started Today
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-all shadow-lg text-base">
+              🛒 Đặt mua ngay
+            </button>
+            <button className="bg-transparent border-2 border-gray-600 text-white px-8 py-4 rounded-full font-semibold hover:border-white transition-all text-base">
+              📞 Tư vấn miễn phí
+            </button>
+          </div>
+          <p className="mt-6 text-gray-500 text-xs">
+            Giao hàng toàn quốc • Thanh toán khi nhận hàng • Đổi trả trong 7
+            ngày
+          </p>
         </div>
       </section>
 
-      {/* Footer - Mobile First */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            {/* Company Info */}
-            <div>
-              <h3 className="text-white text-xl font-bold mb-4">PharmaCity</h3>
-              <p className="text-sm mb-4">
-                Your trusted partner in healthcare, delivering quality products and services since 2024.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Shop</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Prescriptions</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Health Services</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              </ul>
-            </div>
-
-            {/* Customer Service */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Customer Service</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Shipping Info</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Returns</a></li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm">
-                <li>📞 1-800-PHARMA-CITY</li>
-                <li>📧 info@pharmacity.com</li>
-                <li>📍 123 Health Street</li>
-                <li>🕐 24/7 Available</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-800 pt-8 text-center text-sm">
-            <p>&copy; 2024 PharmaCity. All rights reserved. | Privacy Policy | Terms of Service</p>
-          </div>
+      {/* Footer */}
+      <footer className="bg-gray-950 text-gray-400 py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm mb-2">
+            © 2026 PharmaCity. All rights reserved.
+          </p>
+          <p className="text-xs">
+            Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc
+            chữa bệnh.
+          </p>
         </div>
       </footer>
     </main>
