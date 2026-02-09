@@ -22,6 +22,8 @@ import {
   Lightbulb,
 } from "lucide-react";
 import ShopButton from "@/components/shopButton";
+import FeedbackSlider from "@/components/FeedbackSlider";
+import CertificateSlider from "@/components/CertificateSlider";
 
 export default function Home() {
   return (
@@ -632,7 +634,8 @@ export default function Home() {
             </div>
             <p className="text-base md:text-lg text-gray-300">
               Sử dụng liên tục ít nhất 2-3 tháng để đạt hiệu quả tốt nhất. Sản
-              phẩm được nghiên cứu bởi Tiến sĩ, Giáo sư Bệnh viện Y Dược Hà Nội.
+              phẩm được nghiên cứu bởi Tiến sĩ, Giáo sư Bệnh viện Đại Học Y Dược
+              Hà Nội.
             </p>
           </div>
         </div>
@@ -709,6 +712,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Feedback Slider */}
+      <FeedbackSlider />
+
+      {/* Certificate & Store Slider */}
+      <CertificateSlider />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-black via-purple-950/20 to-black relative overflow-hidden">
