@@ -641,7 +641,7 @@ export default function Home() {
       <section className="py-12 md:py-20 bg-gradient-to-b from-zinc-900 via-emerald-950/20 to-black">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-black text-center mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-            🎁 CHƯƠNG TRÌNH TÂM LÝ MIỄN PHÍ
+            🎁 CHƯƠNG TRÌNH "LÀM CHỦ TÂM TRÍ"
           </h2>
           <p className="text-center text-gray-400 mb-12 text-lg md:text-xl max-w-2xl mx-auto">
             Đặc quyền dành riêng cho khách hàng mua sản phẩm
