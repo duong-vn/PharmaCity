@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   X as CloseIcon,
   Sparkles,
@@ -19,55 +19,188 @@ interface OrderModalProps {
   onClose: () => void;
 }
 
-export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
-  // Use global timer context
-  const { formattedTime: time, isInitialized } = useTimer();
+type Province = { code: number; name: string };
+type District = { code: number; name: string };
+type Ward = { code: number; name: string };
 
-  // Form state
+export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
+  const { formattedTime: time } = useTimer();
+
   const [formData, setFormData] = useState({
     hoTen: "",
     soDienThoai: "",
     diaChi: "",
+    // lưu CODE để fetch cho chuẩn
     tinh: "",
     quan: "",
     phuong: "",
     lieuTrinh: "",
   });
 
+  // options
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [districts, setDistricts] = useState<District[]>([]);
+  const [wards, setWards] = useState<Ward[]>([]);
+  const [loadingProvince, setLoadingProvince] = useState(false);
+  const [loadingDistrict, setLoadingDistrict] = useState(false);
+  const [loadingWard, setLoadingWard] = useState(false);
+
+  const provinceCode = formData.tinh ? Number(formData.tinh) : null;
+  const districtCode = formData.quan ? Number(formData.quan) : null;
+
+  const selectedNames = useMemo(() => {
+    const p = provinces.find((x) => x.code === provinceCode)?.name ?? "";
+    const d = districts.find((x) => x.code === districtCode)?.name ?? "";
+    const w = wards.find((x) => x.code === Number(formData.phuong))?.name ?? "";
+    return { p, d, w };
+  }, [
+    provinces,
+    districts,
+    wards,
+    provinceCode,
+    districtCode,
+    formData.phuong,
+  ]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    // reset đúng cascade ngay tại đây cho “mượt”
+    if (name === "tinh") {
+      setFormData((prev) => ({
+        ...prev,
+        tinh: value,
+        quan: "",
+        phuong: "",
+      }));
+      return;
+    }
+    if (name === "quan") {
+      setFormData((prev) => ({
+        ...prev,
+        quan: value,
+        phuong: "",
+      }));
+      return;
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Order submitted:", formData);
+
+    // Nếu bạn muốn log ra NAME thay vì CODE:
+    const payload = {
+      ...formData,
+      tinhName: selectedNames.p,
+      quanName: selectedNames.d,
+      phuongName: selectedNames.w,
+    };
+
+    console.log("Order submitted:", payload);
     alert("🎉 Đặt hàng thành công! Chúng tôi sẽ liên hệ bạn sớm nhất nha! 💜");
     onClose();
   };
+
+  // lock scroll
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
+
+  // Load provinces when modal opens (đỡ gọi API khi chưa mở)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoadingProvince(true);
+        const res = await fetch("https://provinces.open-api.vn/api/p/");
+        const data: Province[] = await res.json();
+        if (!cancelled) setProvinces(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (!cancelled) setLoadingProvince(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isOpen]);
+
+  // Load districts when province changes
+  useEffect(() => {
+    // reset lists dưới
+    setDistricts([]);
+    setWards([]);
+    if (!provinceCode) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoadingDistrict(true);
+        const res = await fetch(
+          `https://provinces.open-api.vn/api/p/${provinceCode}?depth=2`,
+        );
+        const data: { districts: District[] } = await res.json();
+        if (!cancelled) setDistricts(data.districts ?? []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (!cancelled) setLoadingDistrict(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [provinceCode]);
+
+  // Load wards when district changes
+  useEffect(() => {
+    setWards([]);
+    if (!districtCode) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoadingWard(true);
+        const res = await fetch(
+          `https://provinces.open-api.vn/api/d/${districtCode}?depth=2`,
+        );
+        const data: { wards: Ward[] } = await res.json();
+        if (!cancelled) setWards(data.wards ?? []);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (!cancelled) setLoadingWard(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [districtCode]);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn overflow-hidden">
-      {/* Backdrop with blur */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-md"
         onClick={onClose}
-      ></div>
+      />
 
       {/* Floating decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -85,16 +218,12 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
         </div>
       </div>
 
-      {/* Modal */}
       <div className="relative w-full max-w-md max-h-[90vh] overflow-y-hidden animate-slideUp">
-        {/* Glow effect behind modal */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 rounded-3xl blur-xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 rounded-3xl blur-xl" />
 
         <div className="relative bg-gradient-to-b from-slate-900 via-purple-950/50 to-slate-900 rounded-3xl border border-purple-500/30 shadow-2xl shadow-purple-500/20 overflow-hidden">
-          {/* Top decorative bar */}
-          <div className="h-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500"></div>
+          <div className="h-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500" />
 
-          {/* Close button */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-all z-10 hover:rotate-90 duration-300"
@@ -103,7 +232,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
           </button>
 
           <div className="p-6 pt-8">
-            {/* Header with icon */}
+            {/* Header */}
             <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl mb-4 shadow-lg shadow-purple-500/30 animate-pulse">
                 <Gift className="w-8 h-8 text-white" />
@@ -116,7 +245,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
               </p>
             </div>
 
-            {/* Countdown Timer */}
+            {/* Countdown */}
             <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 rounded-2xl p-4 mb-6 border border-purple-500/20">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Clock className="w-4 h-4 text-pink-400" />
@@ -132,7 +261,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                   { value: time.secs, label: "Giây" },
                 ].map((item, index) => (
                   <div key={index} className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur-sm opacity-50 group-hover:opacity-75 transition-opacity" />
                     <div className="relative bg-white rounded-xl px-3 py-2 text-center min-w-[55px]">
                       <div className="text-2xl font-black bg-gradient-to-b from-purple-600 to-pink-600 bg-clip-text text-transparent">
                         {String(item.value).padStart(2, "0")}
@@ -148,7 +277,6 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3">
-              {/* Row 1: Họ tên + SĐT */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="relative group">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400">
@@ -180,7 +308,6 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                 </div>
               </div>
 
-              {/* Địa chỉ */}
               <div className="relative">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-purple-400">
                   <MapPin className="w-4 h-4" />
@@ -196,82 +323,71 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                 />
               </div>
 
-              {/* Row 3: Tỉnh/Quận/Phường */}
+              {/* 3 selects */}
               <div className="grid grid-cols-3 gap-2">
                 <select
                   name="tinh"
                   value={formData.tinh}
                   onChange={handleChange}
                   required
-                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer"
+                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer disabled:opacity-50"
                 >
                   <option value="" className="bg-slate-900">
-                    Tỉnh/TP
+                    {loadingProvince ? "Đang tải..." : "Tỉnh/TP"}
                   </option>
-                  <option value="hanoi" className="bg-slate-900">
-                    Hà Nội
-                  </option>
-                  <option value="hcm" className="bg-slate-900">
-                    TP. HCM
-                  </option>
-                  <option value="danang" className="bg-slate-900">
-                    Đà Nẵng
-                  </option>
-                  <option value="haiphong" className="bg-slate-900">
-                    Hải Phòng
-                  </option>
-                  <option value="cantho" className="bg-slate-900">
-                    Cần Thơ
-                  </option>
-                  <option value="other" className="bg-slate-900">
-                    Khác
-                  </option>
+                  {provinces.map((p) => (
+                    <option
+                      key={p.code}
+                      value={p.code}
+                      className="bg-slate-900"
+                    >
+                      {p.name}
+                    </option>
+                  ))}
                 </select>
+
                 <select
                   name="quan"
                   value={formData.quan}
                   onChange={handleChange}
                   required
-                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer"
+                  disabled={!formData.tinh || loadingDistrict}
+                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer disabled:opacity-50"
                 >
                   <option value="" className="bg-slate-900">
-                    Quận/Huyện
+                    {loadingDistrict ? "Đang tải..." : "Quận/Huyện"}
                   </option>
-                  <option value="q1" className="bg-slate-900">
-                    Quận 1
-                  </option>
-                  <option value="q2" className="bg-slate-900">
-                    Quận 2
-                  </option>
-                  <option value="q3" className="bg-slate-900">
-                    Quận 3
-                  </option>
-                  <option value="other" className="bg-slate-900">
-                    Khác
-                  </option>
+                  {districts.map((d) => (
+                    <option
+                      key={d.code}
+                      value={d.code}
+                      className="bg-slate-900"
+                    >
+                      {d.name}
+                    </option>
+                  ))}
                 </select>
+
                 <select
                   name="phuong"
                   value={formData.phuong}
                   onChange={handleChange}
                   required
-                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer"
+                  disabled={!formData.quan || loadingWard}
+                  className="bg-white/10 border border-purple-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:border-pink-500 text-xs appearance-none cursor-pointer disabled:opacity-50"
                 >
                   <option value="" className="bg-slate-900">
-                    Phường/Xã
+                    {loadingWard ? "Đang tải..." : "Phường/Xã"}
                   </option>
-                  <option value="p1" className="bg-slate-900">
-                    Phường 1
-                  </option>
-                  <option value="p2" className="bg-slate-900">
-                    Phường 2
-                  </option>
-                  <option value="p3" className="bg-slate-900">
-                    Phường 3
-                  </option>
-                  <option value="other" className="bg-slate-900">
-                    Khác
-                  </option>
+                  {wards.map((w) => (
+                    <option
+                      key={w.code}
+                      value={w.code}
+                      className="bg-slate-900"
+                    >
+                      {w.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -291,21 +407,17 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                     💊 Chọn liệu trình
                   </option>
                   <option value="1thang" className="bg-slate-900">
-                    1 tháng - 890.000đ
+                    1 tháng (Mua 3 tặng 1) - 2.370.000đ 🎁 +790K quà
                   </option>
                   <option value="2thang" className="bg-slate-900">
-                    2 tháng - 1.680.000đ 🔥 -100K
-                  </option>
-                  <option value="3thang" className="bg-slate-900">
-                    3 tháng - 2.370.000đ 💎 -300K
+                    2 tháng (Mua 5 tặng 2) - 3.950.000đ 🔥 +1.580K quà
                   </option>
                 </select>
               </div>
 
-              {/* Submit button */}
               <div className="pt-2">
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-full blur-md opacity-75 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-full blur-md opacity-75 group-hover:opacity-100 transition-opacity animate-pulse" />
                   <button
                     type="submit"
                     className="relative w-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white py-4 rounded-full font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg"
@@ -315,7 +427,6 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                 </div>
               </div>
 
-              {/* Note */}
               <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-xl p-3 text-center">
                 <p className="text-amber-300 text-sm">
                   💡 <span className="font-medium">Mẹo nhỏ:</span> Dùng đều 2
@@ -324,7 +435,6 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
               </div>
             </form>
 
-            {/* Footer note */}
             <div className="mt-6 text-center space-y-2">
               <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2">
                 <span className="text-emerald-400 font-bold text-sm">
