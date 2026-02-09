@@ -21,6 +21,7 @@ import {
   RotateCcw,
   Lightbulb,
 } from "lucide-react";
+import ShopButton from "@/components/shopButton";
 
 export default function Home() {
   return (
@@ -46,10 +47,7 @@ export default function Home() {
               Ngủ ngon tự nhiên - Không phụ thuộc thuốc
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-all shadow-lg shadow-purple-500/25 text-lg flex items-center justify-center gap-2">
-                <ShoppingCart className="w-5 h-5" />
-                ĐẶT MUA NGAY
-              </button>
+              <ShopButton />
               <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all text-lg flex items-center justify-center gap-2">
                 <Phone className="w-5 h-5" />
                 TƯ VẤN MIỄN PHÍ
@@ -72,8 +70,8 @@ export default function Home() {
           {/* Benefit 1 */}
           <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
             <div className="w-full md:w-1/2 order-2 md:order-1">
-              <span className="text-6xl md:text-7xl font-black text-purple-400">
-                01
+              <span className="text-6xl md:text-7xl font-black  bg-linear-to-r from-purple-500 to-white-500 bg-clip-text text-transparent">
+                01.
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
                 <Moon className="w-8 h-8 text-purple-400" />
@@ -119,8 +117,8 @@ export default function Home() {
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <span className="text-6xl md:text-7xl font-black text-blue-400">
-                02
+              <span className="text-6xl md:text-7xl font-black text-blue-400 bg-gradient-to-r from-blue-500 to-white-500 bg-clip-text text-transparent">
+                02.
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
                 <ShieldCheck className="w-8 h-8 text-blue-400" />
@@ -141,8 +139,8 @@ export default function Home() {
           {/* Benefit 3 */}
           <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
             <div className="w-full md:w-1/2 order-2 md:order-1">
-              <span className="text-6xl md:text-7xl font-black text-emerald-400">
-                03
+              <span className="text-6xl md:text-7xl font-black text-emerald-400 *:* bg-gradient-to-r from-emerald-500 to-white-500 bg-clip-text text-transparent">
+                03.
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
                 <Brain className="w-8 h-8 text-emerald-400" />
@@ -187,8 +185,8 @@ export default function Home() {
               </div>
             </div>
             <div className="w-full md:w-1/2">
-              <span className="text-6xl md:text-7xl font-black text-amber-400">
-                04
+              <span className="text-6xl md:text-7xl font-black  bg-gradient-to-r from-amber-500 to-white-500 bg-clip-text text-transparent">
+                04.
               </span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 -mt-4 flex items-center gap-3">
                 <Zap className="w-8 h-8 text-amber-400" />
@@ -272,6 +270,16 @@ export default function Home() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA giữa trang */}
+      <section className="py-10 md:py-16 bg-gradient-to-r from-purple-900/30 via-black to-blue-900/30">
+        <div className="container mx-auto px-4 text-center flex flex-col items-center gap-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">
+            Đừng để mất ngủ ảnh hưởng cuộc sống của bạn!
+          </h2>
+          <ShopButton text="ĐẶT MUA NGAY - GIAO HÀNG TẬN NƠI" />
         </div>
       </section>
 
@@ -393,6 +401,15 @@ export default function Home() {
                     </span>
                   </div>
                 </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2.5 flex-shrink-0"></div>
+                  <div>
+                    <strong className="text-white">Dầu nhuyễn thể:</strong>{" "}
+                    <span className="text-gray-300">
+                      Dạng Phospholipid dễ hấp thu, đi thẳng vào não bộ
+                    </span>
+                  </div>
+                </li>
               </ul>
             </div>
 
@@ -408,7 +425,7 @@ export default function Home() {
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-purple-400 rounded-full mt-2.5 flex-shrink-0"></div>
                   <div>
-                    <strong className="text-white">GABA 22.1mg:</strong>{" "}
+                    <strong className="text-white">GABA:</strong>{" "}
                     <span className="text-gray-300">
                       Khóa van lo âu, dập tắt bồn chồn ngay lập tức
                     </span>
@@ -620,6 +637,78 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Chương trình tâm lý miễn phí */}
+      <section className="py-12 md:py-20 bg-gradient-to-b from-zinc-900 via-emerald-950/20 to-black">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-black text-center mb-4 bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            🎁 CHƯƠNG TRÌNH TÂM LÝ MIỄN PHÍ
+          </h2>
+          <p className="text-center text-gray-400 mb-12 text-lg md:text-xl max-w-2xl mx-auto">
+            Đặc quyền dành riêng cho khách hàng mua sản phẩm
+          </p>
+
+          <div className="flex flex-col md:flex-row items-center gap-8 max-w-5xl mx-auto">
+            <div className="w-full md:w-1/2">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
+                <Image
+                  src="/chuong-trinh.jpg"
+                  alt="Chương trình tâm lý miễn phí"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-cover rounded-2xl relative z-10 border border-emerald-500/20"
+                />
+              </div>
+            </div>
+            <div className="w-full md:w-1/2">
+              <div className="bg-gradient-to-br from-emerald-950/50 to-zinc-900/50 border border-emerald-500/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-emerald-400">
+                  Hỗ trợ tâm lý chuyên sâu
+                </h3>
+                <ul className="space-y-4 text-base md:text-lg">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-6 h-6 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300">
+                      <strong className="text-white">Tư vấn 1-1</strong> với
+                      chuyên gia tâm lý về giấc ngủ
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-6 h-6 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300">
+                      <strong className="text-white">Hướng dẫn kỹ thuật</strong>{" "}
+                      thư giãn, thiền định trước khi ngủ
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-6 h-6 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300">
+                      <strong className="text-white">
+                        Theo dõi tiến trình
+                      </strong>{" "}
+                      phục hồi giấc ngủ trong suốt liệu trình
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-6 h-6 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-300">
+                      <strong className="text-white">Tài liệu hướng dẫn</strong>{" "}
+                      xây dựng thói quen ngủ lành mạnh
+                    </span>
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                  <p className="text-center text-emerald-400 font-bold text-lg">
+                    MIỄN PHÍ khi mua sản phẩm!
+                    <p className="text-sm opacity-50">Trị giá 2.472.000đ</p>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-black via-purple-950/20 to-black relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-blue-500/5"></div>
@@ -635,10 +724,7 @@ export default function Home() {
             Phục hồi tế bào thần kinh từ gốc - Ngủ ngon tự nhiên
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-10 py-5 rounded-full font-bold hover:opacity-90 transition-all shadow-xl shadow-purple-500/25 text-lg md:text-xl flex items-center justify-center gap-2">
-              <ShoppingCart className="w-6 h-6" />
-              ĐẶT MUA NGAY
-            </button>
+            <ShopButton />
             <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-10 py-5 rounded-full font-bold hover:bg-white/20 transition-all text-lg md:text-xl flex items-center justify-center gap-2">
               <Phone className="w-6 h-6" />
               TƯ VẤN MIỄN PHÍ
@@ -667,11 +753,23 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
             {/* Thông tin liên hệ */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">THÔNG TIN LIÊN HỆ</h3>
+              <h3 className="text-xl font-bold text-white mb-4">
+                THÔNG TIN LIÊN HỆ
+              </h3>
               <ul className="space-y-3 text-base md:text-lg">
                 <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  <svg
+                    className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
                   </svg>
                   <span>Address: 198 Thái Thịnh, Đống Đa, Hà Nội</span>
                 </li>
@@ -684,7 +782,9 @@ export default function Home() {
 
             {/* Chính sách khách hàng */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">CHÍNH SÁCH KHÁCH HÀNG</h3>
+              <h3 className="text-xl font-bold text-white mb-4">
+                CHÍNH SÁCH KHÁCH HÀNG
+              </h3>
               <ul className="space-y-3 text-base md:text-lg">
                 <li className="flex items-center gap-3">
                   <Truck className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -704,11 +804,11 @@ export default function Home() {
 
           <div className="text-center border-t border-white/10 pt-6">
             <p className="text-base md:text-lg mb-2">
-              © 2026 DSN5Gmatngu. All rights reserved.
+              © 2026 Duocsinguyen5g. All rights reserved.
             </p>
             <p className="text-sm md:text-base text-gray-500">
-              Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc
-              chữa bệnh.
+              Sản phẩm này không phải là thuốc và không có tác dụng thay thế
+              thuốc chữa bệnh.
             </p>
           </div>
         </div>
