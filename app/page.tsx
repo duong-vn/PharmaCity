@@ -281,7 +281,7 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">
             Đừng để mất ngủ ảnh hưởng cuộc sống của bạn!
           </h2>
-          <ShopButton text="ĐẶT MUA NGAY - GIAO HÀNG TẬN NƠI" />
+          <ShopButton />
         </div>
       </section>
 
@@ -656,8 +656,8 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
                 <Image
-                  src="/chuong-trinh.jpg"
-                  alt="Chương trình tâm lý miễn phí"
+                  src="/expert/image.png"
+                  alt="Dược sĩ Nguyên - Chương trình làm chủ tâm trí"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-emerald-500/20"
@@ -705,6 +705,34 @@ export default function Home() {
                   <p className="text-center text-emerald-400 font-bold text-lg">
                     MIỄN PHÍ khi mua sản phẩm!
                     <p className="text-sm opacity-50">Trị giá 2.472.000đ</p>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Thông tin Dược sĩ Nguyên */}
+          <div className="mt-12 max-w-5xl mx-auto">
+            <div className="bg-gradient-to-r from-zinc-900/80 to-emerald-950/30 border border-emerald-500/20 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                  <Image
+                    src="/expert/image.png"
+                    alt="Dược sĩ Nguyên"
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover rounded-full border-2 border-emerald-500/30"
+                  />
+                </div>
+                <div className="text-center md:text-left">
+                  <h4 className="text-xl md:text-2xl font-bold text-white mb-2">
+                    Dược sĩ Nguyên
+                  </h4>
+                  <p className="text-emerald-400 font-semibold mb-3">
+                    32 năm kinh nghiệm trong ngành Dược
+                  </p>
+                  <p className="text-gray-300 text-base md:text-lg leading-relaxed">
+                    Với hơn 3 thập kỷ nghiên cứu và thực hành, Dược sĩ Nguyên đã giúp hàng nghìn người cải thiện giấc ngủ và sức khỏe tinh thần. Chương trình "Làm chủ tâm trí" được xây dựng từ kinh nghiệm thực tiễn và kiến thức chuyên sâu về dược lý thần kinh.
                   </p>
                 </div>
               </div>

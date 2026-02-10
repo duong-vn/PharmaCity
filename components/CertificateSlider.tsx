@@ -163,12 +163,13 @@ export default function CertificateSlider() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   {/* Store info */}
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-black/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                      <p className="text-white font-bold text-lg">
+                    <div className="bg-black/30 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
+                      <p className="text-white font-bold text-lg hidden sm:block">
                         Duocsinguyen5g - Chi nhánh Thái Thịnh
                       </p>
                       <p className="text-gray-300 text-sm">
-                        📍 198 Thái Thịnh, Đống Đa, Hà Nội | ☎️ 0389.933.933
+                        <p>📍 198 Thái Thịnh, Đống Đa, Hà Nội </p>
+                        <p>☎️ 0389.933.933</p>
                       </p>
                     </div>
                   </div>
