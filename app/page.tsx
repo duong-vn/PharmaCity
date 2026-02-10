@@ -567,8 +567,8 @@ export default function Home() {
                 <Image
                   src="/cach-dung.jpg"
                   alt="Cách sử dụng"
-                  width={600}
-                  height={400}
+                  width={2048}
+                  height={1537}
                   className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
                 />
               </div>
@@ -732,7 +732,11 @@ export default function Home() {
                     32 năm kinh nghiệm trong ngành Dược
                   </p>
                   <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                    Với hơn 3 thập kỷ nghiên cứu và thực hành, Dược sĩ Nguyên đã giúp hàng nghìn người cải thiện giấc ngủ và sức khỏe tinh thần. Chương trình "Làm chủ tâm trí" được xây dựng từ kinh nghiệm thực tiễn và kiến thức chuyên sâu về dược lý thần kinh.
+                    Với hơn 3 thập kỷ nghiên cứu và thực hành, Dược sĩ Nguyên đã
+                    giúp hàng nghìn người cải thiện giấc ngủ và sức khỏe tinh
+                    thần. Chương trình "Làm chủ tâm trí" được xây dựng từ kinh
+                    nghiệm thực tiễn và kiến thức chuyên sâu về dược lý thần
+                    kinh.
                   </p>
                 </div>
               </div>
