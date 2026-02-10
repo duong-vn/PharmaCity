@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef, useCallback } from "react";
 import {
   X as CloseIcon,
   Sparkles,
@@ -48,6 +48,9 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   const provinceCode = formData.tinh ? Number(formData.tinh) : null;
   const districtCode = formData.quan ? Number(formData.quan) : null;
 
+  // Track if phone has been logged to avoid duplicate logs
+  const phoneLoggedRef = useRef<string | null>(null);
+
   const selectedNames = useMemo(() => {
     const p = provinces.find((x) => x.code === provinceCode)?.name ?? "";
     const d = districts.find((x) => x.code === districtCode)?.name ?? "";
@@ -61,6 +64,46 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
     districtCode,
     formData.phuong,
   ]);
+
+  // Log phone to spreadsheet when valid
+  const logPhoneToSheet = useCallback(
+    async (phone: string) => {
+      // Skip if already logged this phone
+      if (phoneLoggedRef.current === phone) return;
+      const payload = {
+        phone,
+        hoTen: formData.hoTen,
+        diaChi: formData.diaChi,
+        tinh: selectedNames.p,
+        quan: selectedNames.d,
+        phuong: selectedNames.w,
+        lieuTrinh: formData.lieuTrinh,
+      };
+      console.log("Logging phone to sheet:", payload);
+      try {
+        const res = await fetch("/api/phone-log", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          phoneLoggedRef.current = phone;
+        }
+      } catch (err) {
+        console.error("Failed to log phone:", err);
+      }
+    },
+    [formData.hoTen, formData.diaChi, formData.lieuTrinh, selectedNames],
+  );
+
+  // Check and log phone when it becomes valid
+  useEffect(() => {
+    const phone = formData.soDienThoai;
+    if (phone) {
+      logPhoneToSheet(phone);
+    }
+  }, [formData.soDienThoai, logPhoneToSheet]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -92,18 +135,30 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Nếu bạn muốn log ra NAME thay vì CODE:
     const payload = {
-      ...formData,
-      tinhName: selectedNames.p,
-      quanName: selectedNames.d,
-      phuongName: selectedNames.w,
+      phone: formData.soDienThoai,
+      hoTen: formData.hoTen,
+      diaChi: formData.diaChi,
+      tinh: selectedNames.p,
+      quan: selectedNames.d,
+      phuong: selectedNames.w,
+      lieuTrinh: formData.lieuTrinh,
     };
+    console.log("Logging phone to sheet:", payload);
+    try {
+      const res = await fetch("/api/phone-log", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Failed to log phone:", err);
+    }
 
-    console.log("Order submitted:", payload);
     alert("🎉 Đặt hàng thành công! Chúng tôi sẽ liên hệ bạn sớm nhất nha! 💜");
     onClose();
   };

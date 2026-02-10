@@ -98,7 +98,7 @@ export default function Home() {
                   alt="Ngủ ngon tự nhiên"
                   width={1024}
                   height={1024}
-                  className="w-full h-auto object-cover rounded-2xl relative z-10 border border-white/10"
+                  className="w-full h-auto object-cover rounded-2xl relative z-2 border border-white/10"
                 />
               </div>
             </div>
