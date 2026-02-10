@@ -51,6 +51,14 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   // Track if phone has been logged to avoid duplicate logs
   const phoneLoggedRef = useRef<string | null>(null);
 
+  const isValidPhone = useCallback((phone: string): boolean => {
+    const trimmed = phone.trim();
+    if (!trimmed) return false;
+    if (!/^(\+)?[\d\s().-]+$/.test(trimmed)) return false;
+    const digits = trimmed.replace(/\D/g, "");
+    return digits.length >= 8 && digits.length <= 15;
+  }, []);
+
   const selectedNames = useMemo(() => {
     const p = provinces.find((x) => x.code === provinceCode)?.name ?? "";
     const d = districts.find((x) => x.code === districtCode)?.name ?? "";
@@ -100,10 +108,10 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   // Check and log phone when it becomes valid
   useEffect(() => {
     const phone = formData.soDienThoai;
-    if (phone) {
+    if (phone && isValidPhone(phone)) {
       logPhoneToSheet(phone);
     }
-  }, [formData.soDienThoai, logPhoneToSheet]);
+  }, [formData.soDienThoai, isValidPhone, logPhoneToSheet]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -465,7 +473,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                     1 tháng (Mua 3 tặng 1) - 2.370.000đ 🎁 +790K quà
                   </option>
                   <option value="2thang" className="bg-slate-900">
-                    2 tháng (Mua 5 tặng 2) - 3.950.000đ 🔥 +1.580K quà
+                    3 tháng (Mua 5 tặng 2) - 3.950.000đ 🔥 +1.580K quà
                   </option>
                 </select>
               </div>

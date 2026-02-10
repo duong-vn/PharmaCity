@@ -10,14 +10,13 @@ function getPrivateKey() {
   return k.replace(/\\n/g, "\n");
 }
 
-// Validate Vietnamese phone number
-// function isValidVietnamesePhone(phone: string): boolean {
-//   // Remove all non-digit characters
-//   const cleaned = phone.replace(/\D/g, "");
-//   // Vietnamese phone: starts with 0, 10 digits, common prefixes: 03, 05, 07, 08, 09
-//   const regex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
-//   return regex.test(cleaned);
-// }
+function isValidPhone(phone: string): boolean {
+  const trimmed = phone.trim();
+  if (!trimmed) return false;
+  if (!/^(\+)?[\d\s().-]+$/.test(trimmed)) return false;
+  const digits = trimmed.replace(/\D/g, "");
+  return digits.length >= 8 && digits.length <= 15;
+}
 
 export async function POST(req: Request) {
   try {
@@ -25,10 +24,7 @@ export async function POST(req: Request) {
     const phone = body.phone || "";
 
     // Validate phone
-    if (
-      !phone
-      //|| !isValidVietnamesePhone(phone)/
-    ) {
+    if (!isValidPhone(phone)) {
       return NextResponse.json(
         { ok: false, message: "Invalid phone number" },
         { status: 400 },
