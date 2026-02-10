@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     // Lưu tất cả thông tin form, ô trống nếu không có dữ liệu
     const values = [
       [
-        new Date().toISOString(), // A: Thời gian
+        "=NOW()", // A: Thời gian,
         body.hoTen || "", // B: Họ tên
         phone, // C: Số điện thoại
         body.diaChi || "", // D: Địa chỉ chi tiết

@@ -27,12 +27,11 @@ export async function POST(req: Request) {
     // bạn có thể đổi cột theo ý
     const values = [
       [
-        new Date().toISOString(),
+        "=NOW()",
+        ,
         body.customerName || "",
         body.phone || "",
         body.product || "",
-        Number(body.quantity || 0),
-        body.note || "",
       ],
     ];
 
