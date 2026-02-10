@@ -11,11 +11,9 @@ function getPrivateKey() {
 }
 
 function isValidPhone(phone: string): boolean {
-  const trimmed = phone.trim();
-  if (!trimmed) return false;
-  if (!/^(\+)?[\d\s().-]+$/.test(trimmed)) return false;
-  const digits = trimmed.replace(/\D/g, "");
-  return digits.length >= 8 && digits.length <= 15;
+  const digits = phone.replace(/\D/g, "");
+  // Bắt đầu bằng 0, đúng 10 số
+  return /^0\d{9}$/.test(digits);
 }
 
 export async function POST(req: Request) {
@@ -47,7 +45,7 @@ export async function POST(req: Request) {
       [
         "=NOW()", // A: Thời gian,
         body.hoTen || "", // B: Họ tên
-        phone, // C: Số điện thoại
+        `'${phone}`, // C: Số điện thoại (text to keep leading zero)
         body.diaChi || "", // D: Địa chỉ chi tiết
         body.tinh || "", // E: Tỉnh/Thành phố
         body.quan || "", // F: Quận/Huyện

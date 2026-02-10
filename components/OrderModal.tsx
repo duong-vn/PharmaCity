@@ -52,11 +52,9 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
   const phoneLoggedRef = useRef<string | null>(null);
 
   const isValidPhone = useCallback((phone: string): boolean => {
-    const trimmed = phone.trim();
-    if (!trimmed) return false;
-    if (!/^(\+)?[\d\s().-]+$/.test(trimmed)) return false;
-    const digits = trimmed.replace(/\D/g, "");
-    return digits.length >= 8 && digits.length <= 15;
+    const digits = phone.replace(/\D/g, "");
+    // Bắt đầu bằng 0, đúng 10 số
+    return /^0\d{9}$/.test(digits);
   }, []);
 
   const selectedNames = useMemo(() => {
@@ -156,7 +154,7 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
       phuong: selectedNames.w,
       lieuTrinh: formData.lieuTrinh,
     };
-    console.log("Logging phone to sheet:", payload);
+
     try {
       const res = await fetch("/api/phone-log", {
         method: "POST",
@@ -469,10 +467,10 @@ export default function OrderModal({ isOpen, onClose }: OrderModalProps) {
                   <option value="" className="bg-slate-900">
                     💊 Chọn liệu trình
                   </option>
-                  <option value="1thang" className="bg-slate-900">
+                  <option value="1 tháng" className="bg-slate-900">
                     1 tháng (Mua 3 tặng 1) - 2.370.000đ 🎁 +790K quà
                   </option>
-                  <option value="2thang" className="bg-slate-900">
+                  <option value="3 tháng" className="bg-slate-900">
                     3 tháng (Mua 5 tặng 2) - 3.950.000đ 🔥 +1.580K quà
                   </option>
                 </select>
