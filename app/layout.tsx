@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { TimerProvider } from "@/contexts/TimerContext";
+import FloatingBuyButton from "@/components/FloatingBuyButton";
 
 export const metadata: Metadata = {
   title: "Duocsinguyen5g - Giải pháp ngủ ngon tự nhiên",
@@ -22,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className="antialiased">
-        <TimerProvider>{children}</TimerProvider>
+        <TimerProvider>
+          {children}
+          <FloatingBuyButton />
+        </TimerProvider>
       </body>
     </html>
   );
